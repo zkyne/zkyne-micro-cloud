@@ -1,0 +1,31 @@
+server:
+  port: 10001
+spring:
+  application:
+    name: service-provider
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+    #设置Eureka的地址
+    service-url:
+      defaultZone: http://localhost:10000/eureka/
+
+druid:
+  type: com.alibaba.druid.pool.DruidDataSource
+  master:
+    url: jdbc:mysql://10.255.223.241:3306/dangdu_distribute?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: cmsuser
+    password: cms
+  slave:
+    url: jdbc:mysql://10.255.223.241:3306/dangdu_distribute?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: cmsuser
+    password: cms
+
+mybatis:
+  type-aliases-package: com.zkyne.serviceprovider.entity
+  config-location: classpath:sql-map-config.xml
+  mapper-locations: classpath:sqlmap/*.xml

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ProviderMapper" >
+  <resultMap id="BaseResultMap" type="com.zkyne.serviceprovider.entity.Provider" >
+    <id column="provider_id" property="providerId" jdbcType="BIGINT" />
+    <result column="provider_code" property="providerCode" jdbcType="VARCHAR" />
+    <result column="provider_name" property="providerName" jdbcType="VARCHAR" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="finance_identifier" property="financeIdentifier" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="check_code" property="checkCode" jdbcType="VARCHAR" />
+    <result column="creation_date" property="creationDate" jdbcType="TIMESTAMP" />
+    <result column="last_modify_date" property="lastModifyDate" jdbcType="TIMESTAMP" />
+    <result column="linkman" jdbcType="VARCHAR" property="linkman" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="cooperation_start_date" jdbcType="DATE" property="cooperationStartDate" />
+    <result column="cooperation_end_date" jdbcType="DATE" property="cooperationEndDate" />
+    <result column="div_ratio" jdbcType="INTEGER" property="divRatio" />
+    <result column="contract_path" jdbcType="VARCHAR" property="contractPath" />
+  </resultMap>
+  <sql id="Base_Where" >
+    <if test="providerId != null" > and provider_id=#{providerId} </if>
+    <if test="providerCode != null" > and provider_code=#{providerCode} </if>
+    <if test="providerName != null" > and provider_name=#{providerName} </if>
+    <if test="shortName != null" > and short_name=#{shortName} </if>
+    <if test="financeIdentifier != null" > and finance_identifier=#{financeIdentifier} </if>
+    <if test="status != null" > and status=#{status} </if>
+    <if test="checkCode != null" > and check_code=#{checkCode} </if>
+    <if test="creationDate != null" > and creation_date=#{creationDate} </if>
+    <if test="lastModifyDate != null" > and last_modify_date=#{lastModifyDate} </if>
+    <if test="email != null" > and email=#{email} </if>
+    <if test="cooperationStartDate != null" > and cooperation_start_date=#{cooperationStartDate} </if>
+    <if test="cooperationEndDate != null" > and cooperation_end_date=#{cooperationEndDate} </if>
+    <if test="contractPath != null" > and contract_path is not null and contract_path !='' </if>
+  </sql>
+  <sql id="Base_Where_Like" >
+    <if test="providerId != null" > and provider_id=#{providerId} </if>
+    <if test="providerCode != null" > and provider_code like CONCAT(#{providerCode} ,'%') </if>
+    <if test="providerName != null" > and provider_name like CONCAT(#{providerName} ,'%') </if>
+    <if test="shortName != null" > and short_name like CONCAT(#{shortName} ,'%') </if>
+    <if test="financeIdentifier != null" > and finance_identifier=#{financeIdentifier} </if>
+    <if test="status != null" > and status=#{status} </if>
+    <if test="creationDate != null" > and creation_date=#{creationDate} </if>
+    <if test="lastModifyDate != null" > and last_modify_date=#{lastModifyDate} </if>
+    <if test="email != null" > and email=#{email} </if>
+    <if test="cooperationStartDate != null" > and cooperation_start_date=#{cooperationStartDate} </if>
+    <if test="cooperationEndDate != null" > and cooperation_end_date=#{cooperationEndDate} </if>
+    <if test="contractPath != null" > and contract_path is not null and contract_path !='' </if>
+  </sql>
+  <sql id="Base_Column_List" >
+    provider_id, provider_code, provider_name, short_name, finance_identifier, status, 
+    check_code, creation_date, last_modify_date, linkman, email, cooperation_start_date, 
+    cooperation_end_date, div_ratio,contract_path 
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from distribute_provider
+    where provider_id = #{providerId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from distribute_provider
+    where provider_id = #{providerId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zkyne.serviceprovider.entity.Provider" >
+    insert into distribute_provider (provider_id, provider_code, provider_name, 
+      short_name, finance_identifier, status, 
+      check_code, creation_date, last_modify_date, linkman, 
+      email, cooperation_start_date, cooperation_end_date,div_ratio,contract_path
+      )
+    values (#{providerId,jdbcType=BIGINT}, #{providerCode,jdbcType=VARCHAR}, #{providerName,jdbcType=VARCHAR}, 
+      #{shortName,jdbcType=VARCHAR}, #{financeIdentifier,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{checkCode,jdbcType=VARCHAR}, #{creationDate,jdbcType=TIMESTAMP}, #{lastModifyDate,jdbcType=TIMESTAMP},
+      #{linkman,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR},#{cooperationStartDate,jdbcType=DATE}, 
+      #{cooperationEndDate,jdbcType=DATE},#{div_ratio,jdbcType=INTEGER},#{contract_path,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkyne.serviceprovider.entity.Provider" >
+    insert into distribute_provider
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="providerId != null" >
+        provider_id,
+      </if>
+      <if test="providerCode != null" >
+        provider_code,
+      </if>
+      <if test="providerName != null" >
+        provider_name,
+      </if>
+      <if test="shortName != null" >
+        short_name,
+      </if>
+      <if test="financeIdentifier != null" >
+        finance_identifier,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="checkCode != null" >
+        check_code,
+      </if>
+      <if test="creationDate != null" >
+        creation_date,
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date,
+      </if>
+      <if test="linkman != null">
+        linkman,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="cooperationStartDate != null">
+        cooperation_start_date,
+      </if>
+      <if test="cooperationEndDate != null">
+        cooperation_end_date,
+      </if>
+      <if test="divRatio != null">
+        div_ratio,
+      </if>
+      <if test="contractPath != null">
+        contract_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="providerId != null" >
+        #{providerId,jdbcType=BIGINT},
+      </if>
+      <if test="providerCode != null" >
+        #{providerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="providerName != null" >
+        #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="financeIdentifier != null" >
+        #{financeIdentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="checkCode != null" >
+        #{checkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null" >
+        #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkman != null">
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationStartDate != null">
+        #{cooperationStartDate,jdbcType=DATE},
+      </if>
+      <if test="cooperationEndDate != null">
+        #{cooperationEndDate,jdbcType=DATE},
+      </if>
+      <if test="divRatio != null">
+        #{divRatio,jdbcType=INTEGER},
+      </if>
+      <if test="contractPath != null">
+        #{contractPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkyne.serviceprovider.entity.Provider" >
+    update distribute_provider
+    <set >
+      <if test="providerCode != null" >
+        provider_code = #{providerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="providerName != null" >
+        provider_name = #{providerName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="financeIdentifier != null" >
+        finance_identifier = #{financeIdentifier,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="checkCode != null" >
+        check_code = #{checkCode,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null" >
+        creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyDate != null" >
+        last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkman != null">
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cooperationStartDate != null">
+        cooperation_start_date = #{cooperationStartDate,jdbcType=DATE},
+      </if>
+      <if test="cooperationEndDate != null">
+        cooperation_end_date = #{cooperationEndDate,jdbcType=DATE},
+      </if>
+      <if test="divRatio != null">
+        div_ratio = #{divRatio,jdbcType=INTEGER},
+      </if>
+      <if test="contractPath != null">
+        contract_path = #{contractPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where provider_id = #{providerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkyne.serviceprovider.entity.Provider" >
+    update distribute_provider
+    set provider_code = #{providerCode,jdbcType=VARCHAR},
+      provider_name = #{providerName,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      finance_identifier = #{financeIdentifier,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      check_code = #{checkCode,jdbcType=VARCHAR},
+      creation_date = #{creationDate,jdbcType=TIMESTAMP},
+      last_modify_date = #{lastModifyDate,jdbcType=TIMESTAMP},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      cooperation_start_date = #{cooperationStartDate,jdbcType=DATE},
+      cooperation_end_date = #{cooperationEndDate,jdbcType=DATE}
+    where provider_id = #{providerId,jdbcType=BIGINT}
+  </update>
+  <select id="getAll" resultMap="BaseResultMap" parameterType="map" >
+    select <include refid="Base_Column_List" /> from distribute_provider where 1=1 <include refid="Base_Where" />
+  </select>
+  <select id="pageCount" resultType="java.lang.Integer" parameterType="map" >
+    select count(1) from distribute_provider where 1=1 <include refid="Base_Where_Like" />
+  </select>
+  <select id="pageData" resultMap="BaseResultMap" parameterType="map" >
+    select <include refid="Base_Column_List" /> from distribute_provider where 1=1 <include refid="Base_Where_Like" /> order by provider_id desc
+  </select>
+  
+   <select id="selectByProviderCode" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM distribute_provider
+        WHERE provider_code = #{providerCode}
+    </select>
+</mapper>
