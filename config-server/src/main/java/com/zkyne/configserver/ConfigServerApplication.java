@@ -3,12 +3,14 @@ package com.zkyne.configserver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * config server
  * @author
  */
 @EnableConfigServer
+@EnableEurekaClient
 @SpringBootApplication
 public class ConfigServerApplication {
 

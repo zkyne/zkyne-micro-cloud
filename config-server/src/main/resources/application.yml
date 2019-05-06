@@ -7,8 +7,12 @@ spring:
     config:
       server:
         git:
-          uri:
-          search-paths:
+          uri: https://github.com/zkyne/zkyne-micro-cloud
+          search-paths: config
 #          username: 公有仓库不用配置
 #          password:
       label: master
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10000/eureka/
