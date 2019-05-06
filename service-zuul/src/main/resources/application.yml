@@ -23,6 +23,10 @@ zuul:
       path: /feign/**
       stripPrefix: false
       serviceId: feign-consumer
+    api-config:
+      path: /config/**
+      stripPrefix: false
+      serviceId: config-client
 ribbon:
   eureka:
     enabled: false
@@ -34,6 +38,9 @@ ribbon-consumer:
 feign-consumer:
   ribbon:
     listOfServers: 127.0.0.1:10021
+config-client:
+  ribbon:
+    listOfServers: 127.0.0.1:10051
 
 hystrix:
   command:
