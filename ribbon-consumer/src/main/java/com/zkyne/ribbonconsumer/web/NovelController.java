@@ -32,8 +32,6 @@ public class NovelController {
     }
 
 
-
-
     @RequestMapping("")
     public String index(){
         return "success";
