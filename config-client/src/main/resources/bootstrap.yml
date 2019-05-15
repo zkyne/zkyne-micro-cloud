@@ -10,7 +10,27 @@ spring:
       discovery:
         service-id: config-server
         enabled: true
+      retry:
+        # 配置重试次数，默认为6
+        max-attempts: 6
+        # 间隔乘数，默认1.1
+        multiplier: 1.1
+        # 初始重试间隔时间，默认1000ms
+        initial-interval: 1000
+        # 最大间隔时间，默认2000ms
+        max-interval: 2000
+  rabbitmq:
+    host: 10.255.223.147
+    port: 8672
+    username: admin
+    password: admin
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:10000/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+

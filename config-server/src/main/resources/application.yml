@@ -16,3 +16,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:10000/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
