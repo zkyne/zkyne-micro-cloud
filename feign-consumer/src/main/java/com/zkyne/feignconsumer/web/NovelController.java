@@ -1,6 +1,7 @@
 package com.zkyne.feignconsumer.web;
 
-import com.zkyne.feignconsumer.service.FeignConsumer;
+import com.zkyne.feignconsumer.service.ProviderConsumer;
+import com.zkyne.feignconsumer.service.NovelConsumer;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,19 +18,17 @@ import javax.annotation.Resource;
 @RequestMapping("feign")
 public class NovelController {
     @Resource
-    private FeignConsumer feignConsumer;
+    private NovelConsumer novelConsumer;
+    @Resource
+    private ProviderConsumer providerConsumer;
 
     @RequestMapping("novel/{novelId}")
     public String selectById(@PathVariable("novelId")Long novelId){
         System.out.println(novelId);
-        return feignConsumer.selectById(novelId);
+        return novelConsumer.selectById(novelId);
     }
 
-    @RequestMapping("provider/{code}")
-    public String selectById(@PathVariable("code")String code){
-        System.out.println(code);
-        return feignConsumer.selectByCode(code);
-    }
+
 
     @RequestMapping("")
     public String index(){

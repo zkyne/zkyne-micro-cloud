@@ -1,6 +1,6 @@
 package com.zkyne.feignconsumer.service.impl;
 
-import com.zkyne.feignconsumer.service.FeignConsumer;
+import com.zkyne.feignconsumer.service.NovelConsumer;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,15 +10,12 @@ import org.springframework.stereotype.Service;
  * @Date: 2019/4/24 16:52
  */
 @Service
-public class FeignConsumerErrorHandler implements FeignConsumer {
+public class NovelConsumerErrorHandler implements NovelConsumer {
 
     @Override
     public String selectById(Long novelId) {
         return "service provider selectById error :" + novelId;
     }
 
-    @Override
-    public String selectByCode(String code) {
-        return "service provider selectByCode error :" + code;
-    }
+
 }
