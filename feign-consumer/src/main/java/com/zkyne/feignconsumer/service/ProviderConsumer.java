@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @FeignClient(contextId = "providerConsumer",value = "service-provider",fallback = ProviderConsumerErrorHandler.class)
 public interface ProviderConsumer {
-        /**
+    /**
      * 通过ID查询
      * @param code
      * @return
